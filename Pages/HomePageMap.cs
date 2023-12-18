@@ -2,6 +2,7 @@
 using SeleniumFramework.Pages.Base;
 using SeleniumFramework.Utility;
 using SeleniumFramework.Pages;
+using System.Xml.Linq;
 
 namespace SeleniumFramework.Pages
 {
@@ -31,7 +32,7 @@ namespace SeleniumFramework.Pages
 
         public bool EnterEmail()
         {
-          return  Helper.EnterText(emailAdd, "sampletest@gmail.com");
+            return  Helper.EnterText(emailAdd, "sampletest@gmail.com");
         }
 
         public bool EnterPassword()

@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SeleniumFramework.Pages.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SeleniumFramework.Utility;
+using System.Xml.Linq;
+
 
 namespace SeleniumFramework.Pages
 {
@@ -19,6 +17,48 @@ namespace SeleniumFramework.Pages
         private By txtMessage = By.XPath("//textarea[@id='message']");
         private By btnChooseFile = By.XPath("//input[@name='upload_file']");
         private By btnSubmit = By.XPath("//input[@name='submit']");
+
+     
+        
+        //######### Function Definition #################
+    
+        public bool inputName()
+        {
+         
+            return Helper.EnterText(txtName, "Test");
+        }
+
+
+        public bool inputEmail()
+        {
+            return Helper.EnterText(txtEmail, "test@gmail.com");
+
+        }
+
+        public bool inputSubject()
+        {
+            return Helper.EnterText(txtSubject, "This is subject");
+
+        }
+
+        public bool inputMessage()
+        {
+            return Helper.EnterText(txtMessage, "This is sample message");
+
+        }
+
+        public bool clickChooseFile()
+        {
+            return Helper.ClickElement(btnChooseFile);
+        }
+
+        public bool clickSubmit()
+        {
+            return Helper.ClickElement(btnSubmit);
+        }
+
+        //Assert
+
 
     }
 }

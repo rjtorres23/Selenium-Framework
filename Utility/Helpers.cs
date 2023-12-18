@@ -17,30 +17,12 @@ namespace SeleniumFramework.Utility
             Driver = driver;
         }
 
-   
+        //###########   Element Interaction Functions  ##############
 
         public void HiglightElement(IWebElement element)
         {
             var jsDriver = (IJavaScriptExecutor)Driver;
             jsDriver.ExecuteScript("arguments[0].style.border='3px solid red'", element);
-        }
-        public void WaitForPageToLoad(By name, int duration = 10)
-        {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(duration));
-            wait.Until(ExpectedConditions.ElementIsVisible(name));
-        }
-
-        public void WaitForTextToBePresent(IWebElement element, string text, int duration = 10)
-        {
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(duration));
-            wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
-        }
-
-        public IWebElement WaitForElementVisible(By locator)
-        {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
-            return element;
         }
 
         public bool ClickElement(By locator)
@@ -62,10 +44,6 @@ namespace SeleniumFramework.Utility
             return false;
         }
 
-        private void HandleError(string errorType, string details)
-        {
-            TestContext.WriteLine($"{errorType} occurred on page {Driver.Title}. Details: {details}");
-        }
 
         public bool EnterText(By locator, string text)
         {
@@ -88,9 +66,42 @@ namespace SeleniumFramework.Utility
             return false;
         }
 
+
+        //########### Waiting Functions  ####################
+
+        public void WaitForPageToLoad(By name, int duration = 10)
+        {
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(duration));
+            wait.Until(ExpectedConditions.ElementIsVisible(name));
+        }
+
+        public void WaitForTextToBePresent(IWebElement element, string text, int duration = 10)
+        {
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(duration));
+            wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+        }
+
+        public IWebElement WaitForElementVisible(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+            return element;
+        }
+
+       
+
+
+        //########### Error Handling  ####################
+        private void HandleError(string errorType, string details)
+        {
+            TestContext.WriteLine($"{errorType} occurred on page {Driver.Title}. Details: {details}");
+        }
+
+
+        //########### Get Time Stamp ####################
         public static String GetTimestamp(DateTime value)
         {
-            return value.ToString("yyyyMMddHHmmssffff");
+            return value.ToString("yyyyMMdd_HHmmss");
         }
 
     
@@ -115,6 +126,8 @@ namespace SeleniumFramework.Utility
             return returnValue;
         }
 
+
+        //########### Screenshot Functions ####################
         public void CaptureScreenshot(string testName, string stepNo)
         {
             try
@@ -150,13 +163,12 @@ namespace SeleniumFramework.Utility
             catch (Exception ex)
             {
                 Console.WriteLine($"Error capturing screenshot: {ex.Message}");
-                // Log the exception or handle it as appropriate for your testing framework
+          
             }
         }
 
 
-       
-
+        //########### Scrolling Functions ####################
         public void ScrollToView(IWebDriver driver, IWebElement element)
         {
             /*
@@ -167,8 +179,6 @@ namespace SeleniumFramework.Utility
             js.ExecuteScript("arguments[0].scrollIntoViewIfNeeded()", element);
 
         }
-
-
 
         public void ScrollToBottom(IWebDriver driver)
           {
@@ -193,10 +203,49 @@ namespace SeleniumFramework.Utility
 
             currentHeight = newHeight;
         }
+
     }
+        public static void SelectDropDownByValue(IWebDriver driver, By by, string value, int timeout)
+        {
+            try
+            {
+                SelectElement select = new SelectElement(Locators(driver, by, timeout));
+                select.SelectByValue(value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to select value from dropdown");
+            }
+        }
 
 
-    public string GetCurrentUrl()
+        static public void SelectFromListDropDown(IList<IWebElement> IWebElementsCollection, string itemName)
+        {
+            if (itemName.Length >= 1)
+            {
+                foreach (IWebElement item in IWebElementsCollection)
+                {
+
+                    if (item.Text == itemName)
+                    {
+                        Thread.Sleep(1500);
+                        item.Click();
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static IWebElement Locators(IWebDriver driver, By by, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        //########### Navigation and Information Functions ####################
+        public string GetCurrentUrl()
         {
             return Driver.Url;
         }
@@ -215,10 +264,6 @@ namespace SeleniumFramework.Utility
         {
             return element.Text;
         }
-
-        internal static void ScrollToBottom()
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }
