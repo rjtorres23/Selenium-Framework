@@ -1,14 +1,19 @@
 ﻿using SeleniumFramework.TestCases.Base;
 using NUnit.Framework;
 using SeleniumFramework.Pages;
+using SeleniumFramework.Utility;
+using OpenQA.Selenium;
 
 namespace SeleniumFramework.Test.TestCases
 {
     internal class TC002 : BaseTest
+
     {
         [Test]
+      
         public void Login()
         {
+            Helpers helpers = new Helpers(Driver);
 
             // Create an instance of HomePageMap
             HomePageMap homePageMap = new HomePageMap(Driver);
@@ -19,8 +24,11 @@ namespace SeleniumFramework.Test.TestCases
 
             // Call the method
             bool enterEmailResult = homePageMap.EnterEmail();
+            helpers.CaptureScreenshot("TC002","1");
             bool enterPasswordResult = homePageMap.EnterPassword();
+            helpers.CaptureScreenshot("TC002","2");
             bool loginBtnResult = homePageMap.ClickBtnLogin();
+            helpers.CaptureScreenshot("TC002","3");
             Assert.Multiple(() =>
             {
                 // Add  assertions 

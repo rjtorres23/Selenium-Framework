@@ -9,14 +9,20 @@ namespace SeleniumFramework.Pages
     {
 
         //########### Element Definition #############
-    
-        
+          
         private By SignUpLoginLink = By.XPath("//a[normalize-space()='Signup / Login']");
         private By emailAdd = By.XPath("//input[@data-qa='login-email']");
         private By password = By.XPath("//input[@placeholder='Password']");
         private By btnLogin = By.XPath("//button[normalize-space()='Login']");
-        string username = "angel20";
+        private By title = By.XPath("//img[@alt='Website for automation practice']");
+
         //######### Function Definition #################
+
+        public bool isHomePageLoaded()
+        {
+            return Helper.IsElementVisible(title);
+        }
+
 
         public bool LoginLink()
         {

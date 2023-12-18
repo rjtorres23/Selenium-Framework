@@ -1,9 +1,11 @@
 ﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
+using NUnit.Framework;
+using OpenQA.Selenium.Interactions;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using System.IO;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace SeleniumFramework.Utility
 {
@@ -14,6 +16,8 @@ namespace SeleniumFramework.Utility
         {
             Driver = driver;
         }
+
+   
 
         public void HiglightElement(IWebElement element)
         {
@@ -38,6 +42,7 @@ namespace SeleniumFramework.Utility
             IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
             return element;
         }
+
         public bool ClickElement(By locator)
         {
             try
@@ -83,47 +88,120 @@ namespace SeleniumFramework.Utility
             return false;
         }
 
-
-
-
-        public IWebElement LocateElement(Locators type, string name)
+        public static String GetTimestamp(DateTime value)
         {
-            return type switch
-            {
-                Locators.Xpath => Driver.FindElement(By.XPath(name)),
-                Locators.CssSelector => Driver.FindElement(By.CssSelector(name)),
-                Locators.ID => Driver.FindElement(By.Id(name)),
-                Locators.Name => Driver.FindElement(By.Name(name)),
-                Locators.LinkText => Driver.FindElement(By.LinkText(name)),
-                Locators.ClassName => Driver.FindElement(By.ClassName(name)),
-                Locators.PartialLinkText => Driver.FindElement(By.PartialLinkText(name)),
-                Locators.TagName => Driver.FindElement(By.TagName(name)),
-                _ => throw new ArgumentOutOfRangeException(type.ToString(), $"Invalid Type, {type.ToString()}")
-            };
+            return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        public IList<IWebElement> LocateElements(Locators type, string name)
+    
+
+        public bool IsElementVisible(By locator)
         {
-            return type switch
+            bool returnValue = false;
+            try
             {
-                Locators.Xpath => Driver.FindElements(By.XPath(name)),
-                Locators.CssSelector => Driver.FindElements(By.CssSelector(name)),
-                Locators.ID => Driver.FindElements(By.Id(name)),
-                Locators.Name => Driver.FindElements(By.Name(name)),
-                Locators.LinkText => Driver.FindElements(By.LinkText(name)),
-                Locators.ClassName => Driver.FindElements(By.ClassName(name)),
-                Locators.PartialLinkText => Driver.FindElements(By.PartialLinkText(name)),
-                Locators.TagName => Driver.FindElements(By.TagName(name)),
-                _ => throw new ArgumentOutOfRangeException(type.ToString(), $"Invalid Type, {type.ToString()}")
-            };
+                returnValue = WaitForElementVisible(locator).Displayed;
+            }
+            catch (NoSuchElementException e)
+            {
+                TestContext.WriteLine("Element " + locator + "not found on page " + Driver.Title);
+                returnValue = false;
+            }
+            catch (Exception e)
+            {
+                TestContext.WriteLine("Unknown error " + e.Message + " occurred on page " + Driver.Title);
+                returnValue = false;
+            }
+            return returnValue;
         }
 
-        public string GetCurrentUrl()
+        public void CaptureScreenshot(string testName, string stepNo)
+        {
+            try
+            {
+                // Specify the base directory for saving screenshots
+                string baseDir = @"C:\Automation\Selenium-Framework\Reports\Screenshots";
+                Console.WriteLine($"Base Screenshot directory: {baseDir}");
+
+                // Check if the base directory exists, and create it if not
+                if (!Directory.Exists(baseDir))
+                    Directory.CreateDirectory(baseDir);
+
+                // Create a subfolder for the specific test case
+                string testDir = Path.Combine(baseDir, testName);
+                Console.WriteLine($"Test Screenshot directory: {testDir}");
+
+                // Check if the test case directory exists, and create it if not
+                if (!Directory.Exists(testDir))
+                    Directory.CreateDirectory(testDir);
+
+                // Capture a screenshot using the WebDriver
+                Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
+
+                // Define the file path for the screenshot within the test case folder
+                string imageFilePath = Path.Combine(testDir, $"{testName}_Step{stepNo}_{GetTimestamp(DateTime.Now)}.png");
+
+                // Write the screenshot bytes directly to the file
+                File.WriteAllBytes(imageFilePath, ss.AsByteArray);
+
+                // Attach the screenshot file path to the test report
+                TestContext.AddTestAttachment(imageFilePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error capturing screenshot: {ex.Message}");
+                // Log the exception or handle it as appropriate for your testing framework
+            }
+        }
+
+
+       
+
+        public void ScrollToView(IWebDriver driver, IWebElement element)
+        {
+            /*
+             * If this method is not working for you, use following code
+             * ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+             */
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoViewIfNeeded()", element);
+
+        }
+
+
+
+        public void ScrollToBottom(IWebDriver driver)
+          {
+        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+
+        long currentHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
+
+           while (true)
+               {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            // Wait for a short time to let the page content load
+            System.Threading.Thread.Sleep(1000);
+
+            long newHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
+
+            // If the page height no longer increases, we have reached the bottom
+            if (newHeight == currentHeight)
+            {
+                break;
+            }
+
+            currentHeight = newHeight;
+        }
+    }
+
+
+    public string GetCurrentUrl()
         {
             return Driver.Url;
         }
 
-        public string GetTitle()
+        public string GetTitle(By title)
         {
             return Driver.Title;
         }
@@ -137,6 +215,10 @@ namespace SeleniumFramework.Utility
         {
             return element.Text;
         }
-     
+
+        internal static void ScrollToBottom()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
