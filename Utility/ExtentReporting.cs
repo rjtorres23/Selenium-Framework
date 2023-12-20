@@ -1,10 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace SeleniumFramework.Utility
 {
@@ -15,16 +12,23 @@ namespace SeleniumFramework.Utility
 
         private static ExtentReports StartReporting()
         {
-            var path = "C:\\automation\\Selenium-Framework\\Reports\\report.html";
-
             if (extentReports == null)
             {
-                Directory.CreateDirectory(path);
+                string baseDir = @"C:\automation\Selenium-Framework\Reports";
+                string runResultFolderPath = Path.Combine(baseDir, $"RunResult_{DateTime.Now:yyyyMMdd}");
+                string htmlFolderPath = Path.Combine(runResultFolderPath, "HTML");
+
+                string name = DateTime.Now.ToString("HHmmss");
+                string reportFileName = $"report_{name}.html";
+                string reportFilePath = Path.Combine(htmlFolderPath, reportFileName);
+
+                Directory.CreateDirectory(runResultFolderPath);
+                Directory.CreateDirectory(htmlFolderPath);
 
                 extentReports = new ExtentReports();
-                var htmlReporter = new ExtentSparkReporter(path);
+                var sparkReporter = new ExtentSparkReporter(reportFilePath);
 
-                extentReports.AttachReporter(htmlReporter);
+                extentReports.AttachReporter(sparkReporter);
             }
 
             return extentReports;

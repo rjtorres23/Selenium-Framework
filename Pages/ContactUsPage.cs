@@ -23,11 +23,9 @@ namespace SeleniumFramework.Pages
         //######### Function Definition #################
     
         public bool inputName()
-        {
-         
+        {        
             return Helper.EnterText(txtName, "Test");
         }
-
 
         public bool inputEmail()
         {

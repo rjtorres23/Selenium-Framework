@@ -21,7 +21,7 @@ namespace SeleniumFramework.TestCases.Base
         [SetUp]
         public void TestSetup()
         {
-            //ExtentReporting.CreateTest(TestContext.CurrentContext.Test.MethodName);
+            ExtentReporting.CreateTest(TestContext.CurrentContext.Test.MethodName);
 
             config = new ConfigSetting();
             ConfigurationBuilder builder = new ConfigurationBuilder();
@@ -29,14 +29,14 @@ namespace SeleniumFramework.TestCases.Base
             IConfigurationRoot configuration = builder.Build();
             configuration.Bind(config);
 
-            LoggingLevelSwitch levelSwitch = new LoggingLevelSwitch(LogEventLevel.Debug);
+          /* LoggingLevelSwitch levelSwitch = new LoggingLevelSwitch(LogEventLevel.Debug);
             Log.Logger = new LoggerConfiguration().
                 MinimumLevel.ControlledBy(levelSwitch).
                 WriteTo.File("C:\\automation\\Selenium-Framework\\Reports\\Logs\\",
                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} | {Level:u3} | {Message} {Newline}",
                 rollingInterval: RollingInterval.Day).CreateLogger();
 
-            Log.Information("Sample");
+            Log.Information("Sample");*/
 
             var factory = new Factory();
 
@@ -60,13 +60,13 @@ namespace SeleniumFramework.TestCases.Base
         [TearDown]
         public void TestEnding()
         {
-            //EndTest();
-            //ExtentReporting.EndReporting();
+            EndTest();
+            ExtentReporting.EndReporting();
             Driver.Close();
             Driver.Quit();
         }
 
-        private void EndTest()
+        private static void EndTest()
         {
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             var message = TestContext.CurrentContext.Result.Message;
