@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumFramework.Pages
+namespace SeleniumFramework.Test.TestCases
 {
-    internal class Common
+    internal class TC007
     {
     }
 }
