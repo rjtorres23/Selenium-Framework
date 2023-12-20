@@ -13,10 +13,10 @@ namespace SeleniumFramework.Test.TestCases
         public TC001(IWebDriver driver)
         {
             _driver = driver;
-            HomePage();
+            TestCase();
         }
         [Test]
-        public void HomePage()
+        public void TestCase()
         {
             HomePageMap homePageMap = new HomePageMap(_driver);
 

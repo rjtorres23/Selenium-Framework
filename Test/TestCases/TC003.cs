@@ -17,10 +17,10 @@ namespace SeleniumFramework.Test.TestCases
         public TC003(IWebDriver driver)
         {
             _driver = driver;
-            Singup();
+            TestCase();
         }
         [Test]
-        public void Singup()
+        public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);
 
@@ -28,19 +28,15 @@ namespace SeleniumFramework.Test.TestCases
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
 
             TestContext.WriteLine("App is launched successfully");
-            // Call the LoginLink method on the instance
-            bool loginLinkt = signupLoginPage.LoginLink();
-            bool loginResult = signupLoginPage.isLoginEmail();
 
             // Call the method
-            bool isloginEmail = signupLoginPage.isLoginPassword();
+            bool isloginEmail = signupLoginPage.isLoginEmail();
             bool isLoginPassword = signupLoginPage.isLoginPassword();
             bool isLoginButton = signupLoginPage.isLoginButton();
             // helpers.CaptureScreenshot("TC003");
             Assert.Multiple(() =>
             {
                 // Add  assertions 
-                Assert.That(loginResult, Is.True, "Login Link is visible.");
                 Assert.That(isloginEmail, Is.True, "Login email field is visible.");
                 Assert.That(isLoginPassword, Is.True, "Login password field is visible.");
                 Assert.That(isLoginButton, Is.True, "Log in click button is visble.");

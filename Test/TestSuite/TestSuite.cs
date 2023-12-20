@@ -18,6 +18,5 @@ namespace SeleniumFramework.Test.TestSuite
             TC002 tc002 = new TC002(Driver);
             TC005 tc005 = new TC005(Driver);
         }
-
     }
 }
