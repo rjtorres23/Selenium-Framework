@@ -6,17 +6,22 @@ using OpenQA.Selenium;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC005 : BaseTest
-
-
+    internal class TC005
     {
- 
+        private IWebDriver _driver;
+
+        public TC005(IWebDriver driver)
+        {
+            _driver = driver;
+            TC005_Verify_sign_up();
+        }
+
         public void TC005_Verify_sign_up()
         {
-            Helpers helpers = new Helpers(Driver);
+            Helpers helpers = new Helpers(_driver);
 
             // Create an instance of HomePageMap
-            SignupLoginPage signupLoginPage = new SignupLoginPage(Driver);
+            SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
 
             // Call the method
             signupLoginPage.SignupEnterName();

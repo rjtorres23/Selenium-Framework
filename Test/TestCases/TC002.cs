@@ -6,26 +6,33 @@ using OpenQA.Selenium;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC002 : BaseTest
-
+    internal class TC002
     {
+        private IWebDriver _driver;
+
+        public TC002(IWebDriver driver)
+        {
+            _driver = driver;
+            Login();
+        }
         [Test]
-      
         public void Login()
         {
-            Helpers helpers = new Helpers(Driver);
+            Helpers helpers = new Helpers(_driver);
 
             // Create an instance of HomePageMap
-            HomePageMap homePageMap = new HomePageMap(Driver);
+            HomePageMap homePageMap = new HomePageMap(_driver);
 
             TestContext.WriteLine("App is launched successfully");
             // Call the LoginLink method on the instance
             bool loginResult = homePageMap.LoginLink();
 
+            List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
+
             // Call the method
-            bool enterEmailResult = homePageMap.EnterEmail();
+            bool enterEmailResult = homePageMap.EnterEmail(data[0].Username);
             helpers.CaptureScreenshot("TC002","1");
-            bool enterPasswordResult = homePageMap.EnterPassword();
+            bool enterPasswordResult = homePageMap.EnterPassword(data[0].Password);
             helpers.CaptureScreenshot("TC002","2");
             bool loginBtnResult = homePageMap.ClickBtnLogin();
             helpers.CaptureScreenshot("TC002","3");

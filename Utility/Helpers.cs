@@ -6,6 +6,7 @@ using OpenQA.Selenium.Interactions;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using System.IO;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Newtonsoft.Json;
 
 namespace SeleniumFramework.Utility
 {
@@ -16,8 +17,6 @@ namespace SeleniumFramework.Utility
         {
             Driver = driver;
         }
-
-   
 
         public void HiglightElement(IWebElement element)
         {
@@ -154,9 +153,6 @@ namespace SeleniumFramework.Utility
             }
         }
 
-
-       
-
         public void ScrollToView(IWebDriver driver, IWebElement element)
         {
             /*
@@ -168,35 +164,32 @@ namespace SeleniumFramework.Utility
 
         }
 
-
-
         public void ScrollToBottom(IWebDriver driver)
-          {
+        {
         IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
 
         long currentHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
 
-           while (true)
-               {
-            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
-
-            // Wait for a short time to let the page content load
-            System.Threading.Thread.Sleep(1000);
-
-            long newHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
-
-            // If the page height no longer increases, we have reached the bottom
-            if (newHeight == currentHeight)
+            while (true)
             {
-                break;
+                ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+
+                // Wait for a short time to let the page content load
+                System.Threading.Thread.Sleep(1000);
+
+                long newHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
+
+                // If the page height no longer increases, we have reached the bottom
+                if (newHeight == currentHeight)
+                {
+                    break;
+                }
+
+                currentHeight = newHeight;
             }
-
-            currentHeight = newHeight;
         }
-    }
 
-
-    public string GetCurrentUrl()
+        public string GetCurrentUrl()
         {
             return Driver.Url;
         }
@@ -220,5 +213,24 @@ namespace SeleniumFramework.Utility
         {
             throw new NotImplementedException();
         }
+
+        public List<Data> JsonReader(string path)
+        {
+            var serializer = new JsonSerializer();
+            List<Data> data = new();
+            using (var reader = new StreamReader(path))
+                using (var  jsonReader = new JsonTextReader(reader))
+            {
+                data = serializer.Deserialize<List<Data>>(jsonReader);
+            }
+
+            return data;
+        }
+    }
+
+    public class Data
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

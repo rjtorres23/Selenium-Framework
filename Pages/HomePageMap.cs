@@ -29,14 +29,14 @@ namespace SeleniumFramework.Pages
             return Helper.ClickElement(SignUpLoginLink);
         }
 
-        public bool EnterEmail()
+        public bool EnterEmail(string u_username)
         {
-          return  Helper.EnterText(emailAdd, "sampletest@gmail.com");
+          return  Helper.EnterText(emailAdd, u_username);
         }
 
-        public bool EnterPassword()
+        public bool EnterPassword(string u_password)
         {
-            return Helper.EnterText(password, "pass123456");
+            return Helper.EnterText(password, u_password);
         }
 
         public bool ClickBtnLogin()

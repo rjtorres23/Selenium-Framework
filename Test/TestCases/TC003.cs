@@ -1,4 +1,5 @@
-﻿using SeleniumFramework.Pages;
+﻿using OpenQA.Selenium;
+using SeleniumFramework.Pages;
 using SeleniumFramework.TestCases.Base;
 using SeleniumFramework.Utility;
 using System;
@@ -9,17 +10,22 @@ using System.Threading.Tasks;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC003 : BaseTest
+    internal class TC003
     {
+        private IWebDriver _driver;
 
-      
+        public TC003(IWebDriver driver)
+        {
+            _driver = driver;
+            Singup();
+        }
         [Test]
         public void Singup()
         {
-            Helpers helpers = new Helpers(Driver);
+            Helpers helpers = new Helpers(_driver);
 
             // Create an instance of SingUp Page
-            SignupLoginPage signupLoginPage = new SignupLoginPage(Driver);
+            SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
 
             TestContext.WriteLine("App is launched successfully");
             // Call the LoginLink method on the instance

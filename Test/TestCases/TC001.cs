@@ -5,12 +5,20 @@ using OpenQA.Selenium;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC001 : BaseTest
+    internal class TC001
     {
+
+        private IWebDriver _driver;
+
+        public TC001(IWebDriver driver)
+        {
+            _driver = driver;
+            HomePage();
+        }
         [Test]
         public void HomePage()
         {
-            HomePageMap homePageMap = new HomePageMap(Driver);
+            HomePageMap homePageMap = new HomePageMap(_driver);
 
             //Helpers.ScrollToBottom();
 
