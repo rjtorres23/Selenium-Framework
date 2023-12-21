@@ -169,7 +169,7 @@ namespace SeleniumFramework.Utility
         }
 
 
-        public void ScrollToView(IWebDriver driver, IWebElement element)
+        public void ScrollToElementUsingJavaScript(IWebDriver driver, IWebElement element)
         {
             /*
              * If this method is not working for you, use following code
@@ -186,6 +186,7 @@ namespace SeleniumFramework.Utility
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript($"window.scrollBy(0, {pixelsToScroll});");
         }
+   
 
         public void SelectOptionByText(IWebElement dropdownElement, string text)
         {
@@ -243,5 +244,26 @@ namespace SeleniumFramework.Utility
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string NewPassword { get; set; }
+        public string Birthday { get; set; }
+        public string Birthdate { get; set; }
+        public string Birthyear { get; set; }
+        public string FirtName { get; set; }
+        public string LastName { get; set; }
+        public string Compamy { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string Zipcode { get; set; }
+        public string MobileNo { get; set; }
+
+
+
     }
+
+    
 }

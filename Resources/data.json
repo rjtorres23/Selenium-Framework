@@ -1,6 +1,22 @@
 [
   {
     "username": "sampletest@gmail.com",
-    "password": "pass123456"
+    "password": "pass123456",
+    "Name": "Test",
+    "Email": "Test@gmail.com",
+    "regPassword": "Pass123456",
+    "birthday": "4",
+    "birthDate": "September",
+    "birthYear": "1995",
+    "firstName": "Juan",
+     "lastName": "Deka Cruz",
+    "company": "Test",
+    "address1": "Antipolo City",
+    "address2": "Antipolo City",
+    "country": "India",
+    "state": "test",
+    "city": "Mania City",
+    "zipcode": "1877",
+    "mobileNo": "0967212222"
   }
 ]

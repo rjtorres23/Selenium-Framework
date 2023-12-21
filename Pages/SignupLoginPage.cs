@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumFramework.Pages.Base;
+using System.Drawing;
 
 
 namespace SeleniumFramework.Pages
@@ -100,14 +101,14 @@ namespace SeleniumFramework.Pages
             return Helper.IsElementVisible(SignuButton);
         }
 
-        public bool SignupEnterName()
+        public bool SignupEnterName(string u_Name)
         {
-            return Helper.EnterText(SignupName, "Test");
+            return Helper.EnterText(SignupName, u_Name);
         }
 
-        public bool SignupEnterEmail()
+        public bool SignupEnterEmail(string u_email)
         {
-            return Helper.EnterText(SignupEmail, "TestName222@gmail.com");
+            return Helper.EnterText(SignupEmail, u_email);
         }
 
         public bool SignupClick()
@@ -122,16 +123,29 @@ namespace SeleniumFramework.Pages
             return Helper.ClickElement(registerRdBtnMr);
         }
 
-        public bool RegisterPassword()
+        public string RegisterPassword(string u_pass)
         {
-            return Helper.EnterText(registerTxtPassword, "Pass123456");
+            
+            bool success = Helper.EnterText(registerTxtPassword, u_pass);
+
+            if (success)
+            {
+               
+                return u_pass;
+            }
+            else
+            {
+               
+                return "Failed to enter password";
+            }
         }
 
-        public bool BirthDay()
+
+        public bool BirthDay(string u_bday)
         {
             try
             {
-                Helper.SelectOptionByText(registerDdDay, "4");
+                Helper.SelectOptionByText(registerDdDay, u_bday);
                 return true;  // Successfully selected the option
             }
             catch (Exception ex)
@@ -146,13 +160,13 @@ namespace SeleniumFramework.Pages
         {
             return Helper.ClickElement(registerDdDay);
         }
-        public bool BirthMonth()
+        public bool BirthMonth(string u_bmonth)
         {
-            return Helper.SelectOptionByText(registerDdMonths, "September");
+            return Helper.SelectOptionByText(registerDdMonths, u_bmonth);
         }
-        public bool BirthYear()
+        public bool BirthYear(string u_byear)
         {
-            return Helper.SelectOptionByText(registerDdYear, "1995");
+            return Helper.SelectOptionByText(registerDdYear, u_byear);
         }
 
         public bool NewsLetter()
@@ -165,46 +179,46 @@ namespace SeleniumFramework.Pages
             return Helper.ClickElement(registerChckSpecialOffers);
         }
 
-        public bool FirstName()
+        public bool FirstName(string u_FName)
         {
-            return Helper.EnterText(registerTxtFirstName, "Test");
+            return Helper.EnterText(registerTxtFirstName, u_FName);
         }
 
-        public bool LastName()
+        public bool LastName(string u_LName)
         {
-            return Helper.EnterText(registerTxtLastName, "Test");
+            return Helper.EnterText(registerTxtLastName, u_LName);
         }
-        public bool Company()
+        public bool Company(string u_company)
         {
-            return Helper.EnterText(registerTxtCompany, "Test");
+            return Helper.EnterText(registerTxtCompany, u_company);
         }
-        public bool Address1()
+        public bool Address1(string u_add1)
         {
-            return Helper.EnterText(registerTxtAddres1, "Test");
+            return Helper.EnterText(registerTxtAddres1, u_add1);
         }
-        public bool Address2()
+        public bool Address2(String u_add2)
         {
-            return Helper.EnterText(registerTxtAddres2, "Test");
+            return Helper.EnterText(registerTxtAddres2, u_add2);
         }
-        public bool Country()
+        public bool Country(string u_country)
         {
-            return Helper.SelectOptionByText(registerDdCountry, "India");
+            return Helper.SelectOptionByText(registerDdCountry, u_country);
         }
-        public bool State()
+        public bool State(string u_state)
         {
-            return Helper.EnterText(registerTxtState, "Test");
+            return Helper.EnterText(registerTxtState, u_state);
         }
-        public bool City()
+        public bool City(string u_city)
         {
-            return Helper.EnterText(registerTxtCity, "Test");
+            return Helper.EnterText(registerTxtCity, u_city);
         }
-        public bool ZipCode()
+        public bool ZipCode(string u_zipcode)
         {
-            return Helper.EnterText(registerTxtZipCode, "Test");
+            return Helper.EnterText(registerTxtZipCode, u_zipcode);
         }
-        public bool MobileNo()
+        public bool MobileNo(string u_mobileNo)
         {
-            return Helper.EnterText(registerTxtMobileNo, "Test");
+            return Helper.EnterText(registerTxtMobileNo, u_mobileNo);
         }    
         public bool BtnCreateAccount()
         {

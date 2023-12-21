@@ -20,13 +20,15 @@ namespace SeleniumFramework.Test.TestCases
         {
             Helpers helpers = new Helpers(_driver);
 
+
             // Create an instance of HomePageMap
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
-            signupLoginPage.LoginLink();
+            List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
+           // signupLoginPage.LoginLink();
             // Call the method
-            bool signupName = signupLoginPage.SignupEnterName();
+            bool signupName = signupLoginPage.SignupEnterName(data[0].Name);
             helpers.CaptureScreenshot("TC005", "1");
-            bool signupEmail = signupLoginPage.SignupEnterEmail();
+            bool signupEmail = signupLoginPage.SignupEnterEmail(data[0].Email);
             helpers.CaptureScreenshot("TC005", "2");
             bool signupClick = signupLoginPage.SignupClick();
             helpers.CaptureScreenshot("TC005", "3");
