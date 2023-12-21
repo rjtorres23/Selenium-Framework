@@ -15,7 +15,9 @@ namespace SeleniumFramework.Pages
         private By password = By.XPath("//input[@placeholder='Password']");
         private By btnLogin = By.XPath("//button[normalize-space()='Login']");
         private By title = By.XPath("//img[@alt='Website for automation practice']");
-
+        private By txtSubscription = By.XPath("//h2[normalize-space()='Subscription']");
+        private By arrowUp = By.XPath(" //i[@class='fa fa-angle-up']");
+       
         //######### Function Definition #################
 
         public bool isHomePageLoaded()
@@ -42,6 +44,16 @@ namespace SeleniumFramework.Pages
         public bool ClickBtnLogin()
         {
             return Helper.ClickElement(btnLogin);
+        }
+
+        public bool isSubscription()
+        {
+            return Helper.IsElementVisible(txtSubscription);
+        }
+
+        public bool ClickUp()
+        {
+            return Helper.ClickElement(arrowUp);
         }
 
     }

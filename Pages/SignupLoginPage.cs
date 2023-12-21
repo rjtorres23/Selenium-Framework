@@ -20,8 +20,8 @@ namespace SeleniumFramework.Pages
         private By SignupText = By.XPath("//h2[normalize-space()='New User Signup!']");
         private By SignupName = By.XPath("//input[@placeholder='Name']");
         private By SignupEmail = By.XPath("//input[@data-qa='signup-email']");
-        private By SignuButton = By.XPath("//button[normalize-space()='Signup']]");
-
+        private By SignuButton = By.XPath("//button[normalize-space()='Signup']");
+      
 
         //###########  Register  ##############
         private By registerRdBtnMr = By.XPath("//input[@id='id_gender1']");
@@ -107,7 +107,7 @@ namespace SeleniumFramework.Pages
 
         public bool SignupEnterEmail()
         {
-            return Helper.EnterText(SignupEmail, "TestName");
+            return Helper.EnterText(SignupEmail, "TestName222@gmail.com");
         }
 
         public bool SignupClick()
@@ -127,6 +127,91 @@ namespace SeleniumFramework.Pages
             return Helper.EnterText(registerTxtPassword, "Pass123456");
         }
 
+        public bool BirthDay()
+        {
+            try
+            {
+                Helper.SelectOptionByText(registerDdDay, "4");
+                return true;  // Successfully selected the option
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error selecting option: {ex.Message}");
+                return false;  // Failed to select the option
+            }
+        }
+
+    
+        public bool ClickBirthDay()
+        {
+            return Helper.ClickElement(registerDdDay);
+        }
+        public bool BirthMonth()
+        {
+            return Helper.SelectOptionByText(registerDdMonths, "September");
+        }
+        public bool BirthYear()
+        {
+            return Helper.SelectOptionByText(registerDdYear, "1995");
+        }
+
+        public bool NewsLetter()
+        {
+            return Helper.ClickElement(registerChckNewsletter);
+        }
+
+        public bool SpecialOffers()
+        {
+            return Helper.ClickElement(registerChckSpecialOffers);
+        }
+
+        public bool FirstName()
+        {
+            return Helper.EnterText(registerTxtFirstName, "Test");
+        }
+
+        public bool LastName()
+        {
+            return Helper.EnterText(registerTxtLastName, "Test");
+        }
+        public bool Company()
+        {
+            return Helper.EnterText(registerTxtCompany, "Test");
+        }
+        public bool Address1()
+        {
+            return Helper.EnterText(registerTxtAddres1, "Test");
+        }
+        public bool Address2()
+        {
+            return Helper.EnterText(registerTxtAddres2, "Test");
+        }
+        public bool Country()
+        {
+            return Helper.SelectOptionByText(registerDdCountry, "India");
+        }
+        public bool State()
+        {
+            return Helper.EnterText(registerTxtState, "Test");
+        }
+        public bool City()
+        {
+            return Helper.EnterText(registerTxtCity, "Test");
+        }
+        public bool ZipCode()
+        {
+            return Helper.EnterText(registerTxtZipCode, "Test");
+        }
+        public bool MobileNo()
+        {
+            return Helper.EnterText(registerTxtMobileNo, "Test");
+        }    
+        public bool BtnCreateAccount()
+        {
+            return Helper.ClickElement(registerBtnCreateAccnt);
+        }
+
+        
 
     }
 

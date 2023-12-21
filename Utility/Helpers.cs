@@ -169,9 +169,6 @@ namespace SeleniumFramework.Utility
         }
 
 
-
-
-
         public void ScrollToView(IWebDriver driver, IWebElement element)
         {
             /*
@@ -183,30 +180,22 @@ namespace SeleniumFramework.Utility
 
         }
 
-        public void ScrollToBottom(IWebDriver driver)
+        public void ScrollDown(IWebDriver driver, int pixelsToScroll)
         {
-        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            // Create a JavaScriptExecutor object
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
 
-        long currentHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
-
-            while (true)
-            {
-                ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
-
-                // Wait for a short time to let the page content load
-                System.Threading.Thread.Sleep(1000);
-
-                long newHeight = (long)js.ExecuteScript("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );");
-
-                // If the page height no longer increases, we have reached the bottom
-                if (newHeight == currentHeight)
-                {
-                    break;
-                }
-
-                currentHeight = newHeight;
-            }
+            // Scroll down by the specified number of pixels
+            js.ExecuteScript($"window.scrollBy(0, {pixelsToScroll});");
         }
+
+        public void SelectOptionByText(IWebElement dropdownElement, string text)
+        {
+            SelectElement dropdown = new SelectElement(dropdownElement);
+            dropdown.SelectByText(text);
+        }
+
+    
 
         public string GetCurrentUrl()
         {
@@ -244,6 +233,11 @@ namespace SeleniumFramework.Utility
             }
 
             return data;
+        }
+
+        internal bool SelectOptionByText(By registerDdDay, string v)
+        {
+            throw new NotImplementedException();
         }
     }
 

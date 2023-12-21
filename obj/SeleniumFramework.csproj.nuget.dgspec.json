@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\automation\\Selenium-Framework\\SeleniumFramework.csproj": {}
+    "C:\\Automation\\Selenium-Framework\\SeleniumFramework.csproj": {}
   },
   "projects": {
-    "C:\\automation\\Selenium-Framework\\SeleniumFramework.csproj": {
+    "C:\\Automation\\Selenium-Framework\\SeleniumFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\automation\\Selenium-Framework\\SeleniumFramework.csproj",
+        "projectUniqueName": "C:\\Automation\\Selenium-Framework\\SeleniumFramework.csproj",
         "projectName": "SeleniumFramework",
-        "projectPath": "C:\\automation\\Selenium-Framework\\SeleniumFramework.csproj",
-        "packagesPath": "C:\\Users\\Rich Joe Torres\\.nuget\\packages\\",
-        "outputPath": "C:\\automation\\Selenium-Framework\\obj\\",
+        "projectPath": "C:\\Automation\\Selenium-Framework\\SeleniumFramework.csproj",
+        "packagesPath": "C:\\Users\\AngelicaEstanol\\.nuget\\packages\\",
+        "outputPath": "C:\\Automation\\Selenium-Framework\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Rich Joe Torres\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AngelicaEstanol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,6 +61,10 @@
               "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
               "target": "Package",
               "version": "[8.0.0, )"
             },

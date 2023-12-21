@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Reports\HTML\**" />
+    <Compile Remove="Reports\Logs\**" />
+    <EmbeddedResource Remove="Reports\HTML\**" />
+    <EmbeddedResource Remove="Reports\Logs\**" />
+    <None Remove="Reports\HTML\**" />
+    <None Remove="Reports\Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
     <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.14.1" />
@@ -32,11 +41,6 @@
     <PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="WebDriverManager" Version="2.17.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Reports\Logs\" />
-    <Folder Include="Reports\HTML\" />
   </ItemGroup>
 
 </Project>

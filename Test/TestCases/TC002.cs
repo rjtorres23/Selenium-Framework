@@ -1,8 +1,7 @@
-﻿using SeleniumFramework.TestCases.Base;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SeleniumFramework.Pages;
 using SeleniumFramework.Utility;
-using OpenQA.Selenium;
 
 namespace SeleniumFramework.Test.TestCases
 {
@@ -13,37 +12,33 @@ namespace SeleniumFramework.Test.TestCases
         public TC002(IWebDriver driver)
         {
             _driver = driver;
-            Login();
+            HomePage();
         }
+
         [Test]
-        public void Login()
+        public void HomePage()
         {
-            Helpers helpers = new Helpers(_driver);
-
-            // Create an instance of HomePageMap
             HomePageMap homePageMap = new HomePageMap(_driver);
-
-            TestContext.WriteLine("App is launched successfully");
-            // Call the LoginLink method on the instance
-            bool loginResult = homePageMap.LoginLink();
-
-            List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
-
-            // Call the method
-            bool enterEmailResult = homePageMap.EnterEmail(data[0].Username);
-            helpers.CaptureScreenshot("TC002","1");
-            bool enterPasswordResult = homePageMap.EnterPassword(data[0].Password);
-            helpers.CaptureScreenshot("TC002","2");
-            bool loginBtnResult = homePageMap.ClickBtnLogin();
-            helpers.CaptureScreenshot("TC002","3");
-            Assert.Multiple(() =>
+            Helpers helpers = new Helpers(_driver);
+            try
             {
-                // Add  assertions 
-                Assert.That(loginResult, Is.True, "LoginLink was  successful.");
-                Assert.That(enterEmailResult, Is.True, "EnterEmail was  successful.");
-                Assert.That(enterPasswordResult, Is.True, "EnterPassword was  successful.");
-                Assert.That(loginBtnResult, Is.True, "ClickBtnLogin was  successful.");
-            });
+              
+                bool homepageTitle = homePageMap.isHomePageLoaded();
+                bool subscription = homePageMap.isSubscription();
+           
+                helpers.ScrollDown(_driver, 8500);
+                Thread.Sleep(2000);
+                Assert.That(subscription, Is.True, "Subscription was visible.");
+                homePageMap.ClickUp();
+
+            }
+            catch (Exception ex)
+            {
+                TestContext.WriteLine($"Error scrolling down: {ex.Message}");
+                throw; // Re-throw the exception to mark the test as failed
+            }
         }
+
+
     }
 }
