@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC018
+    internal class TC019
     {
         private IWebDriver _driver;
 
-        public TC018(IWebDriver driver)
+        public TC019(IWebDriver driver)
         {
             _driver = driver;
             TestCase();

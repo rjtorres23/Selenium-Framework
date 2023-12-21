@@ -21,9 +21,6 @@ namespace SeleniumFramework.Test.TestCases
             HomePageMap homePageMap = new HomePageMap(_driver);
             Helpers helpers = new Helpers(_driver);
 
-            // Create an instance of HomePageMap
-            HomePageMap homePageMap = new HomePageMap(_driver);
-
             TestContext.WriteLine("App is launched successfully");
             // Call the LoginLink method on the instance
             bool loginResult = homePageMap.LoginLink();

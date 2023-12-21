@@ -182,10 +182,8 @@ namespace SeleniumFramework.Utility
 
         public void ScrollDown(IWebDriver driver, int pixelsToScroll)
         {
-            // Create a JavaScriptExecutor object
+         
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-
-            // Scroll down by the specified number of pixels
             js.ExecuteScript($"window.scrollBy(0, {pixelsToScroll});");
         }
 

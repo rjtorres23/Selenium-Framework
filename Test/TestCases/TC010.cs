@@ -21,7 +21,7 @@ namespace SeleniumFramework.Test.TestCases
         {
             ProductsPage productsPage = new ProductsPage(_driver);
 
-            Assert.That(productsPage.isAllProductsAvailable(), Is.True, "All products exists");
+            Assert.That(productsPage.isSVisibleProductText(), Is.True, "All products exists");
         }
     }
 }

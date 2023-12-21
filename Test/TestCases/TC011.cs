@@ -21,8 +21,8 @@ namespace SeleniumFramework.Test.TestCases
         {
             ProductsPage productsPage = new ProductsPage(_driver);
 
-            Assert.That(productsPage.inputSearchProduct("sampl"), Is.True, "Input product done");
-            Assert.That(productsPage.clickSearch(), Is.True, "Clicking search done");
+            Assert.That(productsPage.SearchProduct(), Is.True, "Input product done");
+            Assert.That(productsPage.SubmitSearch(), Is.True, "Clicking search done");
         }
     }
 }
