@@ -23,10 +23,9 @@ namespace SeleniumFramework.Pages
         //######### Function Definition #################
     
         public bool inputName()
-        {
+        {        
             return Helper.EnterText(txtName, "Test");
         }
-
 
         public bool inputEmail()
         {
@@ -57,34 +56,7 @@ namespace SeleniumFramework.Pages
         }
 
         //Assert
-        public bool isNameVisible()
-        {
-            return Helper.IsElementVisible(txtName);
-        }
 
-        public bool isEmailVisible()
-        {
-            return Helper.IsElementVisible(txtEmail);
-        }
 
-        public bool isSubjectVisible()
-        {
-            return Helper.IsElementVisible(txtSubject);
-        }
-
-        public bool isMessageVisible()
-        {
-            return Helper.IsElementVisible(txtMessage);
-        }
-
-        public bool isChooseFileVIsible()
-        {
-            return Helper.IsElementVisible(btnChooseFile);
-        }
-
-        public bool isSubmitVIsible()
-        {
-            return Helper.IsElementVisible(btnSubmit);
-        }
     }
 }

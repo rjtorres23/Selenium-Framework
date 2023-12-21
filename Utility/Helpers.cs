@@ -18,6 +18,7 @@ namespace SeleniumFramework.Utility
             Driver = driver;
         }
 
+        //*********** Element Interaction  ***********
         public void HiglightElement(IWebElement element)
         {
             var jsDriver = (IJavaScriptExecutor)Driver;
@@ -119,15 +120,27 @@ namespace SeleniumFramework.Utility
             try
             {
                 // Specify the base directory for saving screenshots
-                string baseDir = @"C:\Automation\Selenium-Framework\Reports\Screenshots";
+                string baseDir = @"C:\Automation\Selenium-Framework\Reports";
                 Console.WriteLine($"Base Screenshot directory: {baseDir}");
 
-                // Check if the base directory exists, and create it if not
-                if (!Directory.Exists(baseDir))
-                    Directory.CreateDirectory(baseDir);
+                // Create a subfolder for the run result date inside the "Reports" folder
+                string runResultDir = Path.Combine(baseDir, $"RunResult_{DateTime.Now:yyyyMMdd}");
+                Console.WriteLine($"Run Result directory: {runResultDir}");
 
-                // Create a subfolder for the specific test case
-                string testDir = Path.Combine(baseDir, testName);
+                // Check if the run result directory exists, and create it if not
+                if (!Directory.Exists(runResultDir))
+                    Directory.CreateDirectory(runResultDir);
+
+                // Create a subfolder for the "Screenshots" folder inside the run result directory
+                string screenshotsDir = Path.Combine(runResultDir, "Screenshots");
+                Console.WriteLine($"Screenshots directory: {screenshotsDir}");
+
+                // Check if the screenshots directory exists, and create it if not
+                if (!Directory.Exists(screenshotsDir))
+                    Directory.CreateDirectory(screenshotsDir);
+
+                // Create a subfolder for the specific test case within the screenshots directory
+                string testDir = Path.Combine(screenshotsDir, testName);
                 Console.WriteLine($"Test Screenshot directory: {testDir}");
 
                 // Check if the test case directory exists, and create it if not
@@ -145,6 +158,8 @@ namespace SeleniumFramework.Utility
 
                 // Attach the screenshot file path to the test report
                 TestContext.AddTestAttachment(imageFilePath);
+
+                System.Threading.Thread.Sleep(2000);
             }
             catch (Exception ex)
             {
@@ -152,6 +167,10 @@ namespace SeleniumFramework.Utility
                 // Log the exception or handle it as appropriate for your testing framework
             }
         }
+
+
+
+
 
         public void ScrollToView(IWebDriver driver, IWebElement element)
         {
