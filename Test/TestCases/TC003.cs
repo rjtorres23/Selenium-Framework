@@ -19,7 +19,7 @@ namespace SeleniumFramework.Test.TestCases
             _driver = driver;
             TestCase();
         }
-        [Test]
+
         public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);

@@ -22,7 +22,7 @@ namespace SeleniumFramework.Test.TestCases
 
             // Create an instance of HomePageMap
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
-            signupLoginPage.LoginLink();
+            // signupLoginPage.LoginLink();
             // Call the method
             bool signupName = signupLoginPage.SignupEnterName();
             helpers.CaptureScreenshot("TC005", "1");

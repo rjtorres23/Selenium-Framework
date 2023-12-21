@@ -11,10 +11,10 @@ namespace SeleniumFramework.Test.TestCases
         public TC013(IWebDriver driver)
         {
             _driver = driver; ;
-            TC013_Verify_Feedack_Review_Form();
+            TestCase();
         }
 
-        public void TC013_Verify_Feedack_Review_Form()
+        public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);
             ProductsPage productsPage = new ProductsPage(_driver);

@@ -6,10 +6,10 @@ using SeleniumFramework.Utility;
 namespace SeleniumFramework.Test.TestSuite
 {
 
-    public class TestSuite : BaseTest
+    public class TS001 : BaseTest
     {
         [Test]
-        public void TS001_Verify_login_using_vali_credentials()
+        public void TestSuite()
         {
             // Instantiate an object of the TC005 class
             TC001 tc001 = new TC001(Driver);

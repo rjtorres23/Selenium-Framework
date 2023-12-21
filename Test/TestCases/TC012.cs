@@ -12,10 +12,10 @@ namespace SeleniumFramework.Test.TestCases
         public TC012(IWebDriver driver)
         {
             _driver = driver;
-            TC012_Verify_View_Products_Details();
+            TestCase();
         }
 
-        public void TC012_Verify_View_Products_Details()
+        public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);
             ProductsPage productsPage = new ProductsPage(_driver);

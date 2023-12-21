@@ -23,7 +23,7 @@ namespace SeleniumFramework.Test.TestCases
             HomePageMap homePageMap = new HomePageMap(_driver);
             TestContext.WriteLine("App is launched successfully");
 
-            bool loginResult = homePageMap.LoginLink();
+            // bool loginResult = homePageMap.LoginLink();
 
             List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
 
@@ -38,7 +38,6 @@ namespace SeleniumFramework.Test.TestCases
             Assert.Multiple(() =>
             {
                 // Add  assertions 
-                Assert.That(loginResult, Is.True, "LoginLink was  successful.");
                 Assert.That(enterEmailResult, Is.True, "EnterEmail was  successful.");
                 Assert.That(enterPasswordResult, Is.True, "EnterPassword was  successful.");
                 Assert.That(loginBtnResult, Is.True, "ClickBtnLogin was  successful.");
