@@ -21,7 +21,7 @@ namespace SeleniumFramework.Test.TestCases
         {
             CommonPage commonPage = new CommonPage(_driver);
 
-            commonPage.clickSignup();
+            commonPage.clickHome();
         }
     }
 }

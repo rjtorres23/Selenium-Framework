@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SeleniumFramework.Test.TestCases
 {
-    internal class TC013
+    internal class TC018
     {
         private IWebDriver _driver;
 
-        public TC013(IWebDriver driver)
+        public TC018(IWebDriver driver)
         {
             _driver = driver;
             TestCase();
@@ -21,7 +21,7 @@ namespace SeleniumFramework.Test.TestCases
         {
             CommonPage commonPage = new CommonPage(_driver);
 
-            commonPage.clickHome();
+            commonPage.clickLogout();
         }
     }
 }
