@@ -164,9 +164,17 @@ namespace SeleniumFramework.Pages
         {
             return Helper.SelectOptionByText(registerDdMonths, u_bmonth);
         }
+        public bool ClickBirthMonth()
+        {
+            return Helper.ClickElement(registerDdDay);
+        }
         public bool BirthYear(string u_byear)
         {
             return Helper.SelectOptionByText(registerDdYear, u_byear);
+        }
+        public bool ClickBirthYear()
+        {
+            return Helper.ClickElement(registerDdDay);
         }
 
         public bool NewsLetter()
