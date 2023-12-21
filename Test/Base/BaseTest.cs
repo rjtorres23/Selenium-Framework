@@ -29,15 +29,6 @@ namespace SeleniumFramework.TestCases.Base
             IConfigurationRoot configuration = builder.Build();
             configuration.Bind(config);
 
-            LoggingLevelSwitch levelSwitch = new LoggingLevelSwitch(LogEventLevel.Debug);
-            Log.Logger = new LoggerConfiguration().
-                MinimumLevel.ControlledBy(levelSwitch).
-                WriteTo.File("C:\\automation\\Selenium-Framework\\Reports\\Logs\\",
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} | {Level:u3} | {Message} {Newline}",
-                rollingInterval: RollingInterval.Day).CreateLogger();
-
-            Log.Information("Sample");
-
             var factory = new Factory();
 
             if (config.Browser.ToLower() == "chrome")

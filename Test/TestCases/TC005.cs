@@ -34,9 +34,9 @@ namespace SeleniumFramework.Test.TestCases
             Assert.Multiple(() =>
             {
                 // Add  assertions 
-                Assert.That(signupName, Is.True, "LoginLink was  successful.");
-                Assert.That(signupEmail, Is.True, "EnterEmail was  successful.");
-                Assert.That(signupClick, Is.True, "EnterPassword was  successful.");
+                Assert.That(signupName, Is.True, "Signup Name was  successful.");
+                Assert.That(signupEmail, Is.True, "Signup Email was  successful.");
+                Assert.That(signupClick, Is.True, "Signup Button was  successful.");
             });
         }
     }

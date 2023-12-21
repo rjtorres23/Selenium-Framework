@@ -27,8 +27,6 @@ namespace SeleniumFramework.Test.TestCases
             contactUsPage.inputMessage();
             contactUsPage.clickChooseFile();
             contactUsPage.clickSubmit();
-
-
         }
     }
 }
