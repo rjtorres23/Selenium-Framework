@@ -15,8 +15,8 @@ namespace SeleniumFramework.Test.TestSuite
         public void TestSuite()
         {
             TC001 tc001 = new TC001(Driver);
-            TC003 tc003 = new TC003(Driver);
             TC015 tc015 = new TC015(Driver);
+            TC003 tc003 = new TC003(Driver);         
             TC004 tc004 = new TC004(Driver);
         }
     }

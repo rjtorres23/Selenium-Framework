@@ -33,7 +33,7 @@ namespace SeleniumFramework.Test.TestCases
             bool isloginEmail = signupLoginPage.isLoginEmail();
             bool isLoginPassword = signupLoginPage.isLoginPassword();
             bool isLoginButton = signupLoginPage.isLoginButton();
-            // helpers.CaptureScreenshot("TC003");
+            helpers.CaptureScreenshot("TC003", "step 1");
             Assert.Multiple(() =>
             {
                 // Add  assertions 

@@ -25,14 +25,17 @@ namespace SeleniumFramework.Test.TestCases
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
 
             List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
-            ;
+            
             signupLoginPage.ClickRdMr();
-            string enterPassword = signupLoginPage.RegisterPassword(data[0].NewPassword);
+            string enterPassword = signupLoginPage.RegisterPassword(data[0].Password);
             Thread.Sleep(1000);
-            signupLoginPage.ClickBirthDay();
-            bool selectBirthday = signupLoginPage.BirthDay(data[0].Birthday);
+            signupLoginPage.ClickBirthDay();    
+            bool selectBirthday = signupLoginPage.BirthDay("4");
             Thread.Sleep(1000);
+            signupLoginPage.ClickBirthMonth();
             bool enterBirthMonth = signupLoginPage.BirthMonth(data[0].Birthdate);
+            Thread.Sleep(1000);
+            signupLoginPage.ClickBirthYear();
             bool SelectBirthYear = signupLoginPage.BirthYear(data[0].Birthyear);
             signupLoginPage.NewsLetter();
             signupLoginPage.SpecialOffers();

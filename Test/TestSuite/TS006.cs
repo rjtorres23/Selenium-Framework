@@ -1,13 +1,13 @@
+
 ﻿using SeleniumFramework.Test.TestCases;
 using SeleniumFramework.TestCases.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace SeleniumFramework.Test.TestSuite
 {
+
     internal class TS006 : BaseTest
     {
         [Test]
@@ -25,4 +25,5 @@ namespace SeleniumFramework.Test.TestSuite
 }
 
     
+
 
