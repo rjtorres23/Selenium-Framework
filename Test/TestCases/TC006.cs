@@ -18,8 +18,6 @@ namespace SeleniumFramework.Test.TestCases
             TC006_RegisterUser();
         }
 
-
-        [Test]
         public void TC006_RegisterUser()
         {
 

@@ -23,6 +23,7 @@ namespace SeleniumFramework.Test.TestCases
 
             // Create an instance of HomePageMap
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
+            // signupLoginPage.LoginLink();
             List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
            // signupLoginPage.LoginLink();
             // Call the method

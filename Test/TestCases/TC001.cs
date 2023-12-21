@@ -15,7 +15,6 @@ namespace SeleniumFramework.Test.TestCases
             TestCase();
         }
 
-        [Test]
         public void TestCase()
         {
             HomePageMap homePageMap = new HomePageMap(_driver);
