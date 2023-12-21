@@ -18,13 +18,14 @@ namespace SeleniumFramework.Pages
         private By txtSubscription = By.XPath("//h2[normalize-space()='Subscription']");
         private By arrowUp = By.XPath(" //i[@class='fa fa-angle-up']");
        
+        private By subscription = By.XPath("//h2[normalize-space()='Subscription']");
+
         //######### Function Definition #################
 
         public bool isHomePageLoaded()
         {
             return Helper.IsElementVisible(title);
         }
-
 
         public bool LoginLink()
         {
@@ -56,5 +57,9 @@ namespace SeleniumFramework.Pages
             return Helper.ClickElement(arrowUp);
         }
 
+        public bool IsSubscriptionAvailable()
+        {  
+            return Helper.IsElementVisible(subscription);
+        }
     }
 }

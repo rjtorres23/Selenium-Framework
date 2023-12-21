@@ -13,10 +13,10 @@ namespace SeleniumFramework.Test.TestCases
         public TC005(IWebDriver driver)
         {
             _driver = driver;
-            TC005_Verify_sign_up();
+            TestCase();
         }
 
-        public void TC005_Verify_sign_up()
+        public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);
 
@@ -24,12 +24,20 @@ namespace SeleniumFramework.Test.TestCases
             SignupLoginPage signupLoginPage = new SignupLoginPage(_driver);
             signupLoginPage.LoginLink();
             // Call the method
-            signupLoginPage.SignupEnterName();
+            bool signupName = signupLoginPage.SignupEnterName();
             helpers.CaptureScreenshot("TC005", "1");
-            signupLoginPage.SignupEnterEmail();
+            bool signupEmail = signupLoginPage.SignupEnterEmail();
             helpers.CaptureScreenshot("TC005", "2");
-            signupLoginPage.SignupClick();
+            bool signupClick = signupLoginPage.SignupClick();
             helpers.CaptureScreenshot("TC005", "3");
+
+            Assert.Multiple(() =>
+            {
+                // Add  assertions 
+                Assert.That(signupName, Is.True, "Signup Name was  successful.");
+                Assert.That(signupEmail, Is.True, "Signup Email was  successful.");
+                Assert.That(signupClick, Is.True, "Signup Button was  successful.");
+            });
         }
     }
 }

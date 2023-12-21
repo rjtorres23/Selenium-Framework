@@ -13,26 +13,36 @@ namespace SeleniumFramework.Test.TestCases
         public TC004(IWebDriver driver)
         {
             _driver = driver;
-            TC004_Verify_logging_in();
+            TestCase();
         }
-        public void TC004_Verify_logging_in()
+        public void TestCase()
         {
             Helpers helpers = new Helpers(_driver);
 
             // Create an instance of HomePageMap
             HomePageMap homePageMap = new HomePageMap(_driver);
-
             TestContext.WriteLine("App is launched successfully");
-            // Call the LoginLink method on the instance
-             homePageMap.LoginLink();
+
+            bool loginResult = homePageMap.LoginLink();
+
             List<Data> data = helpers.JsonReader("C:\\automation\\Selenium-Framework\\Resources\\data.json");
+
             // Call the method
-            homePageMap.EnterEmail(data[0].Username);
+            bool enterEmailResult = homePageMap.EnterEmail(data[0].Username);
             helpers.CaptureScreenshot("TC004", "1");
-            homePageMap.EnterPassword(data[0].Username);
+            bool enterPasswordResult = homePageMap.EnterPassword(data[0].Username);
             helpers.CaptureScreenshot("TC004", "2");
-            homePageMap.ClickBtnLogin();
+            bool loginBtnResult = homePageMap.ClickBtnLogin();
             helpers.CaptureScreenshot("TC004", "3");
+
+            Assert.Multiple(() =>
+            {
+                // Add  assertions 
+                Assert.That(loginResult, Is.True, "LoginLink was  successful.");
+                Assert.That(enterEmailResult, Is.True, "EnterEmail was  successful.");
+                Assert.That(enterPasswordResult, Is.True, "EnterPassword was  successful.");
+                Assert.That(loginBtnResult, Is.True, "ClickBtnLogin was  successful.");
+            });
         }
     }
 }
