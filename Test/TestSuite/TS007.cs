@@ -13,7 +13,7 @@ namespace SeleniumFramework.Test.TestSuite
 {
     internal class TC007 : BaseTest
     {
-        [Test]
+        [Test, Category("Smoke")]
         public void TestSuite()
         {
 

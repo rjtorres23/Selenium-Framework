@@ -11,7 +11,7 @@ namespace SeleniumFramework.Test.TestSuite
 {
     internal class TS003 : BaseTest
     {
-        [Test]
+        [Test, Category("Smoke")]
         public void TestSuite()
         {
             TC015 tc015 = new TC015(Driver);

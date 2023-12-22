@@ -7,7 +7,7 @@ namespace SeleniumFramework.Test.TestSuite
 
     public class TS001 : BaseTest
     {
-        [Test]
+        [Test, Category("Smoke")]
         public void TestSuite()
         {
        
