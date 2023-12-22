@@ -48,5 +48,10 @@ namespace SeleniumFramework.Utility
         {
             extentTest.Info(info);
         }
+
+        public static void LogFail(string message, string screenshotPath)
+        {
+            extentTest.Fail(message, MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPath).Build());
+        }
     }
 }

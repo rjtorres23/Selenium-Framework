@@ -66,24 +66,47 @@ namespace SeleniumFramework.TestCases.Base
             Driver.Quit();
         }
 
+        /*  private static void EndTest()
+          {
+              var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
+              var message = TestContext.CurrentContext.Result.Message;
+
+              switch (testStatus)
+              {
+                  case NUnit.Framework.Interfaces.TestStatus.Failed:
+                      ExtentReporting.LogInfo($"Test has failed {message}");
+                      break;
+                  case NUnit.Framework.Interfaces.TestStatus.Skipped:
+                      ExtentReporting.LogInfo($"Test skipped {message}");
+                      break;
+                  default:
+                      break;
+              }
+
+              ExtentReporting.LogInfo("END TEST");
+          }*/
         private static void EndTest()
         {
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             var message = TestContext.CurrentContext.Result.Message;
-
+            string baseDir = @"C:\Automation\Selenium-Framework\Reports\RunResult_20231222\Screenshots\TC005\sample.png";
             switch (testStatus)
             {
                 case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    ExtentReporting.LogInfo($"Test has failed {message}");
+                    string screenshotPath = baseDir; // Implement this method to capture a screenshot
+                    ExtentReporting.LogFail($"Test has failed. {message}", screenshotPath);
+                    ExtentReporting.LogInfo($"Test has failed. {message}");
                     break;
                 case NUnit.Framework.Interfaces.TestStatus.Skipped:
-                    ExtentReporting.LogInfo($"Test skipped {message}");
+                    ExtentReporting.LogInfo($"Test skipped. {message}");
                     break;
                 default:
+                    ExtentReporting.LogInfo("Test passed.");
                     break;
             }
 
             ExtentReporting.LogInfo("END TEST");
         }
+
     }
 }
