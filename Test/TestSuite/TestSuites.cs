@@ -18,7 +18,7 @@ namespace SeleniumFramework.Test.TestSuite
             TC002 tc002 = new TC002(Driver);
         }
 
-        [Test, Category("Regression")]
+        [Test, Category("Smoke")]
         public void TS002()
         {
             TC001 tc001 = new TC001(Driver);
@@ -47,7 +47,7 @@ namespace SeleniumFramework.Test.TestSuite
             TC011 tc11 = new TC011(Driver);
         }
 
-        [Test, Category("Smoke")]
+        [Test, Category("Regression")]
         public void TS005()
         {
             TC001 tc001 = new TC001(Driver);
@@ -56,7 +56,7 @@ namespace SeleniumFramework.Test.TestSuite
             TC008 tc008 = new TC008(Driver);
         }
 
-        [Test, Category("Smoke")]
+        [Test, Category("Regression")]
         public void TS006()
         {
             TC001 tc001 = new TC001(Driver);
@@ -65,7 +65,7 @@ namespace SeleniumFramework.Test.TestSuite
             TC012 tc012 = new TC012(Driver);
         }
 
-        [Test, Category("Smoke")]
+        [Test, Category("Regression")]
         public void TS007()
         {
             TC001 tc001 = new TC001(Driver);

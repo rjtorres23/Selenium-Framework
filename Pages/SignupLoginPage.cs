@@ -146,12 +146,12 @@ namespace SeleniumFramework.Pages
             try
             {
                 Helper.SelectOptionByText(registerDdDay, u_bday);
-                return true;  // Successfully selected the option
+                return true;  
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error selecting option: {ex.Message}");
-                return false;  // Failed to select the option
+                return false; 
             }
         }
 

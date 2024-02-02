@@ -28,6 +28,7 @@ namespace SeleniumFramework.Test.TestCases
             
             signupLoginPage.ClickRdMr();
             string enterPassword = signupLoginPage.RegisterPassword(data[0].Password);
+            ExtentReporting.LogInfo($"Input Password: {enterPassword}");
             Thread.Sleep(1000);
             signupLoginPage.ClickBirthDay();    
             bool selectBirthday = signupLoginPage.BirthDay("4");
@@ -54,8 +55,11 @@ namespace SeleniumFramework.Test.TestCases
             Assert.Multiple(() =>
             {
                 // Add  assertions 
+                ExtentReporting.LogInfo($"Password Assertion: {enterPassword}");
                 Assert.That(enterPassword, Is.EqualTo("pass123456"));
+                ExtentReporting.LogInfo($"Birthday Assertion: {selectBirthday}");
                 Assert.That(selectBirthday, Is.True, "Birthday is Visible.");
+                ExtentReporting.LogInfo($"BirthMonth Assertion: {enterBirthMonth}");
                 Assert.That(enterBirthMonth, Is.True, "BirthMonth is visible.");
                 Assert.That(SelectBirthYear, Is.True, "BirthYear is visible.");
                 Assert.That(enterFirtName, Is.True,   "FirstName is visible.");

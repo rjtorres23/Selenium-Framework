@@ -159,6 +159,8 @@ namespace SeleniumFramework.Utility
                 // Attach the screenshot file path to the test report
                 TestContext.AddTestAttachment(imageFilePath);
 
+                Console.WriteLine($"Screenshot captured: {imageFilePath}");
+
                 System.Threading.Thread.Sleep(2000);
             }
             catch (Exception ex)
